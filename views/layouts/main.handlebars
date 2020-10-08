@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -375,20 +374,19 @@
       });
     </script>
 
-      <script>
-        window.takePill = function(nudge, linkText) {
+    <script>
+      // example callback function, placed in window scope
+      window.takePill = function(nudge, linkText) {
 
-          if (linkText.indexOf('Red') === -1) {
-            document.body.style.backgroundColor = 'blue';
-          } else {
-            document.body.style.backgroundColor = 'red';
-          }
+        if (linkText.indexOf('Red') === -1) {
+          document.body.style.backgroundColor = 'blue';
+        } else {
+          document.body.style.backgroundColor = 'red';
+        }
 
-        };
-      </script>
+      };
+    </script>
 
-    
-      {{{body}}}
+    {{{body}}}
   </body>
 </html>
-

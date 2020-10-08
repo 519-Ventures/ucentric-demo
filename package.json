@@ -1,14 +1,13 @@
 {
   "name": "ucentric-demo",
   "version": "1.0.0",
-  "description": "",
+  "description": "Ucentric Demo",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Ucentric",
   "dependencies": {
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",

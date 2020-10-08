@@ -17,6 +17,10 @@
   </head>
 
   <style>
+    /*
+       Sytles for CSS loading indicator
+    */
+
     .lds-dual-ring {
       display: inline-block;
       width: 80px;
@@ -46,7 +50,7 @@
   <body>
     <div class="container">
       <div class="row">
-        <h1> Hi {{username}}!</h1>
+        <h1>Hi {{username}}!</h1>
       </div>
       <div class="row" style="margin-top: 20px;">
         <h3>Hang Tight A Few Seconds While We Generate Some Nudges...</h3>
@@ -55,12 +59,12 @@
         <div class="lds-dual-ring"></div>
       </div>
     </div>
-  </body>
 
-  <script>
-    window.setTimeout(function() {
-      window.location.href = window.location.origin + "/home?username=" + "{{username}}";
-    }, 5000);
-  </script>
+    <script>
+      window.setTimeout(function() {
+        window.location.href = window.location.origin + "/home?username=" + "{{username}}";
+      }, 5000);
+    </script>
+  </body>
 </html>
 

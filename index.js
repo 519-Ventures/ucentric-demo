@@ -15,6 +15,11 @@ const ACCOUNT_ID = process.env.UCENTRIC_ACCOUNT_ID;
 const KEY = process.env.UCENTRIC_PUB_KEY;
 const API_HOST = process.env.UCENTRIC_API_HOST || "api.ucentric.io";
 
+// support self-signed certs in local development
+if (API_HOST.indexOf('dev') > -1 ) {
+  process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+}
+
 // Demo specific config for content
 const DEMO_CONFIG = {
   youtubeId: process.env.YOUTUBE_ID,
@@ -60,8 +65,11 @@ app.post('/login', async (req, res) => {
     heroUrl: DEMO_CONFIG.heroUrl
   };
 
+  // call the api to create nudges
   sendNudges(settings);
 
+  // nudges can take a few seconds to process, so render
+  // a splash page where the user can wait until they're ready.
   res.render('splash', {
     layout: 'splash',
     username: req.body.username
@@ -71,7 +79,7 @@ app.post('/login', async (req, res) => {
 app.get('/home', async (req, res) => {
   const userName = req.query.username;
 
-  // Created A Signed Token, Grating This User To Fetch
+  // Created A Signed Token, Granting This User To Fetch
   // Nudges for their user id only.
   const exp = Math.ceil(+new Date()/1000) + 60; // unix timestamp seconds
   const str = ACCOUNT_ID + userName + `?Expires=${exp}&Key=${KEY}`
@@ -102,8 +110,14 @@ app.post('/webhook', async (req, res) => {
     throw new Error('Invalid Webhook Signature');
   }
 
-  // todo if the webhook is asking a question, then create a new
-  // nudge to send to the asker
+  const payload = req.body;
+
+  switch (payload.event) {
+    case "Ucentric Clicked Nudge":
+      console.log("Nudge Clicked")
+    default:
+      console.log(`Unsupported Event Type`);
+  }
 
   res.send('OK');
 });
