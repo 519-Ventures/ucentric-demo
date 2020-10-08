@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://www.google.com/s2/favicons?domain=ucentric.io">
+
+    <title>Ucentric Demo</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="/floating-labels.css" rel="stylesheet">
+  </head>
+
+  <style>
+    .lds-dual-ring {
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+    }
+    .lds-dual-ring:after {
+      content: " ";
+      display: block;
+      width: 64px;
+      height: 64px;
+      margin: 8px;
+      border-radius: 50%;
+      border: 6px solid #1070CA;
+      border-color: #1070CA transparent #1070CA transparent;
+      animation: lds-dual-ring 1.2s linear infinite;
+    }
+    @keyframes lds-dual-ring {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <h1> Hi {{username}}!</h1>
+      </div>
+      <div class="row" style="margin-top: 20px;">
+        <h3>Hang Tight A Few Seconds While We Generate Some Nudges...</h3>
+      </div>
+      <div class="row" style="margin-top: 20px;">
+        <div class="lds-dual-ring"></div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    window.setTimeout(function() {
+      window.location.href = window.location.origin + "/home?username=" + "{{username}}";
+    }, 5000);
+  </script>
+</html>
+
