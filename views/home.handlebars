@@ -2,6 +2,11 @@
   window.ucentric.init({
     accountId: "{{ accountId }}", 
     userId: "{{ userId }}",
+    auth: {
+      key: "{{ ucentricKey }}",
+      token: "{{ ucentricToken }}",
+      exp: {{ ucentricTokenExp }}
+    },
     userTraits: {},
     themeOptions: {}
   });
