@@ -17,15 +17,17 @@
   </head>
 
   <body>
-    <form class="form-signin" action="/login" method="post">
+    <form class="form-signin" action="/login" method="post" style="max-width: 500px;">
       <div class="text-center mb-4">
-        <img class="mb-4" src="/logo.png" alt="" width="72" height="72">
-        <h1 class="h3 mb-3 font-weight-normal">Ucentric Demo</h1>
-        <p>A New Level Of Customer Engagement</p>
+        <img class="mb-4" src="/logo.png" alt="ucentric logo" width="auto" height="72">
+        {{#if logo}}
+          <img style="margin-left: 20px; max-width: 200px;" class="mb-4" src="{{ logo }}" alt="your logo" width="auto" height="72">
+        {{/if}}
+        <h1 style="margin-top: 20px;" class="h3 mb-3 font-weight-normal">Ucentric <> {{ company }} Demo</h1>
       </div>
 
       <div class="form-label-group">
-        <input name="username" id="inputEmail" type="text" class="form-control" placeholder="Username" required autofocus>
+        <input name="username" id="inputEmail" type="text" class="form-control" placeholder="Username (enter anything you want)" required autofocus>
         <label for="inputEmail">Username</label>
       </div>
 

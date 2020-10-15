@@ -20,6 +20,11 @@
       <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
+          <a style="position: relative;" class="nav-link" href="#" data-ucentric-feed="true" >What's New</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
           <a class="nav-link" href="/">Sign out</a>
         </li>
       </ul>
@@ -363,7 +368,11 @@
             BadgePreview: false,
             DisableButton: false,
             BadgeStyles: {
-              backgroundColor: "#EC4C47"
+              backgroundColor: "#EC4C47",
+              top: "2px",
+              right: "-20px",
+              fontSize: "10px",
+              textAlign: "center"
             },
             ButtonStyles: {
               backgroundColor: "#1070CA",
@@ -385,6 +394,17 @@
         }
 
       };
+
+      window.openFeed = function(nudge, linkText) {
+        if (linkText === 'Yes!') {
+          window.ucentric.Nudge.disable();
+          window.ucentric.Slider.show();
+
+          setTimeout(() => {
+            window.ucentric.Nudge.enable();
+          }, 10000);
+        }
+      }
     </script>
 
     {{{body}}}

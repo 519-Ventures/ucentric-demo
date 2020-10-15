@@ -6,7 +6,9 @@ const bodyParser = require('body-parser');
 const sendNudges = require('./lib/nudge');
 
 // TODO
-// add text to readme
+// add brand colors as env vars
+// replace localdev script tags with production script tags if host
+// add defaults for demo config
 
 const PORT = process.env.PORT || 9000;
 const WEBHOOK_SECRET = process.env.UCENTRIC_WEBHOOK_SECRET;
@@ -20,11 +22,13 @@ if (API_HOST.indexOf('dev') > -1 ) {
   process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 }
 
-// Demo specific config for content
+// Demo specific config for content, sets acme corp fallbacks
 const DEMO_CONFIG = {
-  youtubeId: process.env.YOUTUBE_ID,
-  memeUrl: process.env.MEME_URL,
-  heroUrl: process.env.HERO_URL
+  youtubeId: process.env.OPTIONAL_YOUTUBE_ID || "9m7evoFF83c",
+  memeUrl: process.env.OPTIONAL_MEME_URL || "https://images3.memedroid.com/images/UPLOADED7/5c22c94161764.jpeg",
+  heroUrl: process.env.OPTIONAL_HERO_URL || "https://upload.wikimedia.org/wikipedia/commons/6/6e/Acme-corp.png",
+  company: process.env.OPTIONAL_COMPANY || "Acme Corp",
+  logo: process.env.OPTIONAL_LOGO || "/acme.svg"
 };
 
 const app = express();
@@ -40,7 +44,11 @@ app.use(express.static('public'));
 app.use(bodyParser.json({verify:function(req,res,buf){req.rawBody=buf}}));
 
 app.get('/', async (req, res) => {
-  res.render('login', {layout: 'login.handlebars'});
+  res.render('login', {
+    layout: 'login.handlebars',
+    company: DEMO_CONFIG.company,
+    logo: DEMO_CONFIG.logo
+  });
 });
 
 app.get('/login', async (req, res) => {
@@ -93,7 +101,8 @@ app.get('/home', async (req, res) => {
     accountId: ACCOUNT_ID,
     ucentricKey: KEY,
     ucentricTokenExp: exp,
-    ucentricToken: token
+    ucentricToken: token,
+    host: API_HOST
   });
 });
 
